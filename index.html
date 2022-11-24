@@ -5,37 +5,34 @@
     <title>Testing a Cookie</title>
 
     <script>
-        function setCookie(cname,cvalue,exdays) {
-            const d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        function setCookie(cookiename, cookieinfo, expiration) {
+            document.cookie = cookiename + "=" + cookieinfo + ";" + expiration + ";path=/";
         }
 
-        function getCookie(cname) {
-            let name = cname + "=";
+        function getCookie(cookiename) {
+            let name = cookiename + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
-            let ca = decodedCookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1);
+            let cook = decodedCookie.split(';');
+            for(let c = 0; c < cook.length; c++) {
+                let x = cook[c];
+                while (x.charAt(0) === ' ') {
+                    x = x.substring(1);
                 }
-                if (c.indexOf(name) === 0) {
-                    return c.substring(name.length, c.length);
+                if (x.indexOf(name) === 0) {
+                    return x.substring(name.length, x.length);
                 }
             }
             return "";
         }
 
         function checkCookie() {
-            let user = getCookie("username");
-            if (user !== "") {
-                alert("Welcome again " + user);
+            let usernm = getCookie("username");
+            if (usernm !== "") {
+                alert("Good to see you again " + usernm);
             } else {
-                user = prompt("Please enter your name:","");
-                if (user !== "" && user !== null) {
-                    setCookie("username", user, 30);
+                usernm = prompt("Enter your name:","");
+                if (usernm !== "" && usernm !== null) {
+                    setCookie("username", usernm, 65);
                 }
             }
         }
@@ -44,7 +41,8 @@
 
 <body onload="checkCookie()">
     <h1> This page is testing a cookie.</h1>
-    <p> Reload the page to see the cookie remember your name </p>
+    <p> You will be asked to enter your name. </p>
+    <p> When you leave this page and return at another time, the cookie will remember your name. </p>
 </body>
 
 </html>
