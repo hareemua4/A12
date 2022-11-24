@@ -26,13 +26,13 @@
         }
 
         function checkCookie() {
-            let usernm = getCookie("username");
-            if (usernm !== "") {
-                alert("Good to see you again " + usernm);
+            let user = getCookie("username");
+            if (user !== "") {
+                alert("Good to see you again " + user);
             } else {
-                usernm = prompt("Enter your name:","");
-                if (usernm !== "" && usernm !== null) {
-                    setCookie("username", usernm, 65);
+                user = prompt("Enter your name:","");
+                if (user !== "" && user !== null) {
+                    setCookie("username", user, 65);
                 }
             }
         }
